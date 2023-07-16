@@ -11,7 +11,8 @@
 <p float="left">
 <img src="figure/pt1.gif" width = "230" height = "160">
 <img src="figure/pt3.gif" width = "230" height = "160">
-<img src="figure/pt2.gif" width = "230" height = "160">
+<!-- <img src="figure/pt2.gif" width = "230" height = "160"> -->
+<img src="figure/vos1.gif" width = "230" height = "160">
 
 
 
