@@ -5,7 +5,7 @@
 
 <sup>1</sup>University of Science and Technology of China, Hefei, China
 
-##### [Paper](https://arxiv.org/pdf/) | [Video (comming soon)](https://www.youtube.com/)
+##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
 
 
 
@@ -15,7 +15,7 @@
 <!-- <img src="figure/pt2.gif" width = "230" height = "160"> -->
 <img src="figure/vos1.gif" width = "230" height = "160">
 
-This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**" (ICCV'23).
+This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**".
 
 
 ## :star: News
