@@ -7,7 +7,6 @@
 
 ##### [Paper](https://arxiv.org/pdf/) | [Video (comming soon)](https://www.youtube.com/)
 
-This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**" (ICCV'23).
 
 
 <p float="left">
@@ -15,6 +14,14 @@ This is the official code for  "**Learning Fine-Grained Features for Pixel-wise 
 <img src="figure/pt3.gif" width = "230" height = "160">
 <!-- <img src="figure/pt2.gif" width = "230" height = "160"> -->
 <img src="figure/vos1.gif" width = "230" height = "160">
+
+This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**" (ICCV'23).
+
+<!-- ![](figure/framework.png) -->
+
+<div  align="center">    
+<img src="figure/framework.png"  height="340px"/> 
+</div>
 
 
 
