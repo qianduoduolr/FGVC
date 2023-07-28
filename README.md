@@ -19,7 +19,7 @@ This is the official code for  "**Learning Fine-Grained Features for Pixel-wise 
 
 
 ## :star: News
-- *2023.07.25:* Code realeased.
+- *2023.07.14:*  Our paper "Learning Fine-Grained Features for Pixel-wise Video Correspondences" is accepted to ICCV 2023. The code for training and evaluation will be released as soon as possible.
 
 
 
