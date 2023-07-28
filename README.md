@@ -7,6 +7,8 @@
 
 [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
 
+This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**" (ICCV'23).
+
 
 <p float="left">
 <img src="figure/pt1.gif" width = "230" height = "160">
@@ -16,3 +18,13 @@
 
 
 
+### Citation
+If you find this repository useful for your research, please cite our paper:
+
+```latex
+@inproceedings{lilearn,
+  title={Learning Fine-Grained Features for Pixel-wise Video Correspondences},
+  author={Li, Rui and Liu, Dong},
+  booktitle={ICCV},
+  year={2023}
+}
