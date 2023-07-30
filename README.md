@@ -89,3 +89,7 @@ pip install future tensorboard
 git clone https://github.com/davisvideochallenge/davis2017-evaluation.git && cd davis2017-evaluation
 python setup.py develop
 ```
+
+
+## License
+This work is licensed under MIT license. See the [LICENSE](LICENSE) for details.
