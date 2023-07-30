@@ -19,7 +19,7 @@ This is the official code for  "**Learning Fine-Grained Features for Pixel-wise 
 
 
 ## :star: News
-- *2023.07.14:*  Our paper "Learning Fine-Grained Features for Pixel-wise Video Correspondences" is accepted to ICCV 2023. The code for training and evaluation will be released as soon as possible.
+- *2023.07.14:*  Our paper "Learning Fine-Grained Features for Pixel-wise Video Correspondences" is accepted to ICCV 2023. The code for inference and training will be released as soon as possible.
 
 
 
@@ -43,8 +43,19 @@ If you find this repository useful for your research, please cite our paper:
   booktitle={ICCV},
   year={2023}
 }
-
 ```
+
+Our other paper related to video correspondence learning ([Spa-then-Temp](https://github.com/qianduoduolr/Spa-then-Temp)):
+```latex
+@inproceedings{li2023spatial,
+  title={Spatial-then-Temporal Self-Supervised Learning for Video Correspondence},
+  author={Li, Rui and Liu, Dong},
+  booktitle={CVPR},
+  pages={2279--2288},
+  year={2023}
+}
+```
+
 ## Prerequisites
 
 * Python 3.8.8
