@@ -7,7 +7,7 @@
 
 ##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
 
-
+This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". 
 
 <p float="left">
 <img src="figure/pt1.gif" width = "210" height = "140">
@@ -15,7 +15,7 @@
 <!-- <img src="figure/pt2.gif" width = "230" height = "160"> -->
 <img src="figure/vos1.gif" width = "210" height = "140">
 
-This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". Without any fine-tuning, the proposed method can be directly applied to various correspondence-related tasks including long-term point tracking, video object segmentation, etc.
+Without any fine-tuning, the proposed method can be directly applied to various correspondence-related tasks including long-term point tracking, video object segmentation, etc.
 
 
 ## :star: News
