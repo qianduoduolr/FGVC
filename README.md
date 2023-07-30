@@ -39,7 +39,7 @@ If you find this repository useful for your research, please cite our paper:
 ```latex
 @inproceedings{lilearn,
   title={Learning Fine-Grained Features for Pixel-wise Video Correspondences},
-  author={Li, Rui and Liu, Dong},
+  author={Li, Rui, Shenglong Zhou, and Liu, Dong},
   booktitle={ICCV},
   year={2023}
 }
