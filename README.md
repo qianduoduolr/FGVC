@@ -1,13 +1,18 @@
 ## [ICCV 2023] Learning Fine-Grained Features for Pixel-wise Video Correspondences
 
-[![LICENSE](https://img.shields.io/github/license/hitachinsk/FGT)](https://github.com/hitachinsk/FGT/blob/main/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/qianduoduolr/FGVC)](https://github.com/qianduoduolr/FGVC/blob/base/LICENSE)
 
 [Rui Li](https://qianduoduolr.github.io/)<sup>1</sup>, Shenglong Zhou<sup>1</sup>, and [Dong Liu](https://faculty.ustc.edu.cn/dongeliu/en/index/85593/list/index.htm)<sup>1</sup>, 
 
 
+
+
 <sup>1</sup>University of Science and Technology of China, Hefei, China
 
-##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
+<!-- ##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
+ -->
+
+### [[Paper](https://arxiv.org/abs/2208.06768)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com/file/d/1qhbcl501T3DVDvfSgwSc77qg_4Rwe2oJ/view?usp=sharing)] / [[Intro](https://youtu.be/)]
 
 This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". 
 
