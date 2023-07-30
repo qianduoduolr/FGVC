@@ -10,10 +10,10 @@
 
 
 <p float="left">
-<img src="figure/pt1.gif" width = "230" height = "160">
-<img src="figure/pt3.gif" width = "230" height = "160">
+<img src="figure/pt1.gif" width = "210" height = "140">
+<img src="figure/pt3.gif" width = "210" height = "140">
 <!-- <img src="figure/pt2.gif" width = "230" height = "160"> -->
-<img src="figure/vos1.gif" width = "230" height = "160">
+<img src="figure/vos1.gif" width = "210" height = "140">
 
 This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". Without any fine-tuning, the proposed method can be directly applied to various correspondence-related tasks including long-term point tracking, video object segmentation, etc.
 
@@ -27,7 +27,7 @@ This is the official code for  "**Learning Fine-Grained Features for Pixel-wise 
 <!-- ![](figure/framework.png) -->
 
 <div  align="center">    
-<img src="figure/framework.png"  height="300px"/> 
+<img src="figure/framework.png"  height="270px"/> 
 </div>
    Video analysis tasks rely heavily on identifying the pixels from different frames that correspond to the same visual target. To tackle this problem, recent studies have advocated feature learning methods that aim to learn distinctive representations to match the pixels, especially in a self-supervised fashion. Unfortunately, these methods have difficulties for tiny or even single-pixel visual targets. Pixel-wise video correspondences were traditionally related to optical flows, which however lead to deterministic correspondences and lack robustness on real-world videos. We address the problem of learning features for establishing pixel-wise correspondences. Motivated by optical flows as well as the self-supervised feature learning, we propose to use not only labeled synthetic videos but also unlabeled real-world videos for learning fine-grained representations in a holistic framework. We adopt an adversarial learning scheme to enhance the generalization ability of the learned features. Moreover, we design a coarse-to-fine framework to pursue high computational efficiency. Our experimental results on a series of correspondence-based tasks demonstrate that the proposed method outperforms state-of-the-art rivals in both accuracy and efficiency.
 
