@@ -12,7 +12,7 @@
 <!-- ##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
  -->
 
-### [[Paper](https://arxiv.org/abs/2208.06768)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com/file/d/1qhbcl501T3DVDvfSgwSc77qg_4Rwe2oJ/view?usp=sharing)] / [[Intro](https://youtu.be/)]
+#### [[Paper](https://arxiv.org/abs/2208.06768)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com)] / [[Intro](https://youtu.be/)]
 
 This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". 
 
