@@ -46,7 +46,7 @@ If you find this repository useful for your research, please cite our paper:
 ```latex
 @inproceedings{li2023learn,
   title={Learning Fine-Grained Features for Pixel-wise Video Correspondences},
-  author={Li, Rui, Shenglong Zhou, and Liu, Dong},
+  author={Li, Rui and Zhou, Shenglong and Liu, Dong},
   booktitle={ICCV},
   year={2023}
 }
