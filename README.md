@@ -75,7 +75,7 @@ To get started, first please clone the repo
 ```
 git clone https://github.com/qianduoduolr/FGVC
 ```
-Then, please run the following commands:
+<!-- Then, please run the following commands:
 ```
 conda create -n fgvc python=3.8.8
 conda activate fgvc
@@ -89,7 +89,8 @@ pip install future tensorboard
 git clone https://github.com/davisvideochallenge/davis2017-evaluation.git && cd davis2017-evaluation
 python setup.py develop
 ```
-
+ -->
+ For convenience, we provide a [Dockerfile](docker/Dockerfile). Alternatively, you can install all required packages manually. Our code is based on [mmcv](https://github.com/open-mmlab/mmcv) framework and [Spa-then-Temp](https://github.com/SamsungLabs/imvoxelnet). You can refer to those repositories for more information.
 
 ## License
 This work is licensed under MIT license. See the [LICENSE](LICENSE) for details.
