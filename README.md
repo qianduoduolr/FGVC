@@ -90,7 +90,7 @@ git clone https://github.com/davisvideochallenge/davis2017-evaluation.git && cd 
 python setup.py develop
 ```
  -->
- For convenience, we provide a [Dockerfile](docker/Dockerfile). Alternatively, you can install all required packages manually. Our code is based on [mmcv](https://github.com/open-mmlab/mmcv) framework and [Spa-then-Temp](https://github.com/SamsungLabs/imvoxelnet). You can refer to those repositories for more information.
+ For convenience, we provide a [Dockerfile](docker/Dockerfile). Alternatively, you can install all required packages manually. Our code is based on [mmcv](https://github.com/open-mmlab/mmcv) framework and [Spa-then-Temp](https://github.com/qianduoduolr/Spa-then-Temp). You can refer to those repositories for more information.
 
 ## License
 This work is licensed under MIT license. See the [LICENSE](LICENSE) for details.
