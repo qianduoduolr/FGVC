@@ -12,7 +12,7 @@
 <!-- ##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
  -->
 
-#### [[Paper](https://arxiv.org/abs/2208.06768)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com)] / [[Intro](https://youtu.be/)]
+#### [[Paper](https://openaccess.thecvf.com/content/CVPR2023/papers/Li_Spatial-Then-Temporal_Self-Supervised_Learning_for_Video_Correspondence_CVPR_2023_paper.pdf)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com)] / [[Intro](https://youtu.be/)]
 
 This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". 
 
