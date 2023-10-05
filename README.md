@@ -28,6 +28,9 @@ Without any fine-tuning, the proposed method can be directly applied to various 
 ## :star: News
 - *2023.07.14:*  Our paper "Learning Fine-Grained Features for Pixel-wise Video Correspondences" is accepted to ICCV 2023. The code for inference and training will be released as soon as possible.
 
+- *2023.10.04:*  We have released the code and models of the paper "Learning Fine-Grained Features for Pixel-wise Video Correspondences".
+
+
 
 
 ## Overview
@@ -92,5 +95,32 @@ python setup.py develop
  -->
  For convenience, we provide a [Dockerfile](docker/Dockerfile). Alternatively, you can install all required packages manually. Our code is based on [mmcv](https://github.com/open-mmlab/mmcv) framework and [Spa-then-Temp](https://github.com/qianduoduolr/Spa-then-Temp). You can refer to those repositories for more information.
 
+
+## Evaluation
+The evaluation is particularly conducted on pixel-wise correspondence-related tasks, i.e., point tracking, on TAP-Vid dataset.
+
+We follow the prior studies to leverage label propagation for inference, which can be achieved by:
+```shell
+bash tools/dist_test.sh ${CONFIG}  ${GPUS}
+```
+
+Note you need download the pre-trained models with [this link](https://drive.google.com/file/d/1ZJHyWMOpWhfmX6vMX5Qkm_2qkqS0grNM/view?usp=drive_link). Then you need to modify the `checkpoint_path` in `CONFIG`. We give a inference cmd example:
+
+```shell
+# testing for point tracking on TAP-Vid-DAVIS
+bash tools/dist_test.sh configs/eval/tapdavis_eval.py 4
+```
+
+
+## Tranining (to be updated)
+We perform training on FlyingThings and YouTube-VOS:
+
+```shell
+bash tools/dist_train.sh configs/train/train.py 4
+```
+
 ## License
 This work is licensed under MIT license. See the [LICENSE](LICENSE) for details.
+
+## Acknowledgement
+The codebase is implemented based on the [MMCV](https://github.com/open-mmlab/mmcv), [tapnet](https://github.com/google-deepmind/tapnet), and [VFS](https://github.com/xvjiarui/VFS). Thanks for these excellent open source repositories.
