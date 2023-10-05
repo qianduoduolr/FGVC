@@ -1,3 +1,0 @@
-# WARNING: do not delete; required by readthedocs auto-build
-sphinx==3.3.1
-sphinx-rtd-theme==0.5.1
