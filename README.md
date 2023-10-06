@@ -47,10 +47,11 @@ Without any fine-tuning, the proposed method can be directly applied to various 
 If you find this repository useful for your research, please cite our paper:
 
 ```latex
-@inproceedings{li2023learn,
+@inproceedings{li2023learning,
   title={Learning Fine-Grained Features for Pixel-wise Video Correspondences},
   author={Li, Rui and Zhou, Shenglong and Liu, Dong},
   booktitle={ICCV},
+  pages={9632--9641},
   year={2023}
 }
 ```
