@@ -193,9 +193,13 @@ The overall data structure is as followed:
 
 
 ## Evaluation
-<div  align="center">    
-<img src="figure/results.png"  height="270px"/> 
-</div>
+| Method | BADJA / PCK@0.2 | JHMDB / PCK@0.1 | TAP-DAVIS / < D | TAP-Kinetics / < D |
+| ------ | ------------- | ------------- | ------------- | ---------------- |
+| RAFT   | 45.6          | 66.4          | 42.1          | 44.3             |
+| TAPNet | -             | 62.3          | 48.6          | 54.4             |
+| PIPs   | 62.3          | -             | 55.3          | 48.2             |
+| Ours   | **69.7**      | **66.8**      | **62.8**      | **54.6**         |
+
 The evaluation is particularly conducted on pixel-wise correspondence-related tasks, i.e., point tracking, on TAP-Vid dataset, JHMDB, and BADJA. The results are shown above.
 
 We follow the prior studies to leverage label propagation for inference, which can be achieved by:
