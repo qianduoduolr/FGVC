@@ -12,7 +12,7 @@
 <!-- ##### [Paper](https://arxiv.org/pdf/) | [Video](https://www.youtube.com/)
  -->
 
-#### [[Paper](https://arxiv.org/pdf/2308.03040.pdf)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com)] / [[Intro](https://youtu.be/)]
+#### [[Paper](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Learning_Fine-Grained_Features_for_Pixel-Wise_Video_Correspondences_ICCV_2023_paper.pdf)] /  [[Demo](https://youtu.be)] / [[Project page](https://qianduoduolr.github.io/)] / [[Poster](https://drive.google.com)] / [[Intro](https://youtu.be/)]
 
 This is the official code for  "**Learning Fine-Grained Features for Pixel-wise Video Correspondences**". 
 
@@ -97,21 +97,118 @@ python setup.py develop
  For convenience, we provide a [Dockerfile](docker/Dockerfile). Alternatively, you can install all required packages manually. Our code is based on [mmcv](https://github.com/open-mmlab/mmcv) framework and [Spa-then-Temp](https://github.com/qianduoduolr/Spa-then-Temp). You can refer to those repositories for more information.
 
 
+## Data Preparation
+#### FlyingThings
+We create FlyingThings dataset for training. Please first download FlyingThings from [this link](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html). Note we only need the `frames_cleanpass_webp` and `optical_flow` in our training.
+
+#### YouTube-VOS
+Please download the zip file `train.zip` from the [official website](https://competitions.codalab.org/competitions/19544#participate-get-data). Then, unzip and place it to`data/ytv`. Besides, please move the `youtube2018_train.json` in `data/data_info/` to `data/YouTube-VOS`.
+
+#### TAP-Vid
+Please follow the instructions in [this link](https://github.com/google-deepmind/tapnet) to download the TAP-Vid-DAVIS and TAP-Vid-Kinetics. 
+Once these dataset have been downloaded to `TAP-Vid/tapvid_davis/pkl_datas` and `TAP-Vid/tapvid_kinetics/pkl_datas`, we split these dataset (`*.pkl` files) with `tools/data/tapvid/split_pickle.py`
+
+#### DAVIS-2017
+DAVIS-2017 dataset could be downloaded from the [official website](https://davischallenge.org/davis2017/code.html). We use the 480p validation set for evaluation. Please move the `davis2017_val_list.json` in `data/data_info/` to `data/DAVIS/ImageSets`.
+#### JHMDB
+Please download the data (`Videos`, `Joint positions`) from [official website](http://jhmdb.is.tue.mpg.de/challenge/JHMDB/datasets), unzip and place them in `data/jhmdb`. Please move the `val_list.txt` in `data/data_info/` to `data/JHMDB`.
+
+#### BADJA
+To evaluate the model in BAJDA, first follow the instructions at the [BADJA repo](https://github.com/benjiebob/BADJA). This will involve downloading DAVIS trainval full-resolution data. 
+
+The overall data structure is as followed:
+
+```shell
+├── data
+│   ├── FlyingThings3D
+│   │   ├── frames_cleanpass_webp
+│   │   │   ├── TRAIN
+│   │   │   │   ├──A/
+│   │   │   │   ├──...
+│   │   ├── optical_flow
+│   │   │   ├── TRAIN
+│   │   │   │   ├──A/
+│   │   │   │   ├──...
+│   ├── YouTube-VOS
+│   │   ├── train
+│   │   │   ├── JPEGImages
+│   │   │   │   ├──003234408d/
+│   │   │   │   ├──...
+│   │   │   ├── youtube2018_train.json
+│   ├── TAP-Vid
+│   │   ├── tapvid_davis
+│   │   │   ├── pkl_datas
+│   │   │   │   ├──*.pkl
+│   │   │   │   ├──...
+│   │   │   ├── data_split
+│   │   │   │   ├──1.pkl
+│   │   │   │   ├──2.pkl
+│   │   │   │   ├──...
+│   │   ├── tapvid_kinetics
+│   │   │   ├── pkl_datas
+│   │   │   │   ├──*.pkl
+│   │   │   │   ├──...
+│   │   │   ├── data_split
+│   │   │   │   ├──1.pkl
+│   │   │   │   ├──2.pkl
+│   │   │   │   ├──...
+│   ├── DAVIS
+│   │   ├── Annotations
+│   │   │   ├── 480p
+│   │   │   │   ├── bike-packing/
+│   │   │   │   ├── ...
+│   │   ├── ImageSets
+│   │   │   ├── davis2017_val_list.json
+│   │   │   ├── ...
+│   │   ├── JPEGImages
+│   │   │   ├── 480p
+│   │   │   │   ├── bike-packing/
+│   │   │   │   ├── ...
+│   ├── JHMDB
+│   │   ├── Rename_Images
+│   │   │   ├── brush_hair/
+│   │   │   ├── ...
+│   │   ├── joint_positions
+│   │   │   ├── brush_hair/
+│   │   │   ├── ...
+│   │   ├── val_list.txt
+│   ├── DAVIS_Full_Res
+│   │   ├── Annotations
+│   │   │   ├── Full-Resolution
+│   │   │   │   ├── bike-packing/
+│   │   │   │   ├── ...
+│   │   ├── ImageSets
+│   │   │   ├── 2016
+│   │   │   │   ├── train.txt
+│   │   │   │   ├── val.txt
+│   │   │   ├── ...
+│   │   ├── JPEGImages
+│   │   │   ├── Full-Resolution
+│   │   │   │   ├── bike-packing/
+│   │   │   │   ├── ...
+│   │   ├── joint_annotations
+│   │   │   ├── bear.json
+│   │   │   ├── ...
+```
+
+
 ## Evaluation
-The evaluation is particularly conducted on pixel-wise correspondence-related tasks, i.e., point tracking, on TAP-Vid dataset.
+The evaluation is particularly conducted on pixel-wise correspondence-related tasks, i.e., point tracking, on TAP-Vid dataset, JHMDB, and BADJA.
 
 We follow the prior studies to leverage label propagation for inference, which can be achieved by:
 ```shell
-bash tools/dist_test.sh ${CONFIG}  ${GPUS}
+bash tools/dist_test.sh ${CONFIG}  ${GPUS} ${TASK} ${CKPT}
 ```
 
-Note you need download the pre-trained models with [this link](https://drive.google.com/file/d/1ZJHyWMOpWhfmX6vMX5Qkm_2qkqS0grNM/view?usp=drive_link). Then you need to modify the `checkpoint_path` in `CONFIG`. We give a inference cmd example:
+Note you need download the pre-trained models with [this link](https://drive.google.com/file/d/1ZJHyWMOpWhfmX6vMX5Qkm_2qkqS0grNM/view?usp=drive_link) for the `CKPT`. Note the TASK consists of `'davis'` (for TAP-Vid-DAVIS), `'kinetics'` (for TAP-Vid-Kinetics), `'jhmdb'` (for human keypoint tracking), and `'badja'` (for animal keypoint tracking).
+
+We give a inference cmd example:
 
 ```shell
-# testing for point tracking on TAP-Vid-DAVIS
-bash tools/dist_test.sh configs/eval/tapdavis_eval.py 4
+# testing for point tracking on TAP-Vid-DAVIS with 4 GPUs
+bash tools/dist_test.sh configs/eval/res18_d1_eval.py 4 davis ckpt/res18_d1_fly_ytv_mixed_training.pth
 ```
-
+The results will be saved to `eval/`. Please note we do inference on 4 A100 GPUs, which has 80G memory. Here we give the inference code to support other GPUs with smaller memory size, which may cost more time for inference, we plan to give a more efficient version of the inference code with label propagation later. If you have enough memory, you can simply increase the `step` of `test_cfg` in `CONFIG` for faster inference in current version. 
 
 ## Tranining (to be updated)
 We perform training on FlyingThings and YouTube-VOS:

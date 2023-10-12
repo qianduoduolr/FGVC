@@ -5,4 +5,3 @@ from .jhmdb_dataset import *
 from .badja_dataset import *
 from .flyingthingsplus import *
 from .tapvid import *
-from .kubric_dataset import *

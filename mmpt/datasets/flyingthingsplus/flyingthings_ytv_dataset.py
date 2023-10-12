@@ -21,7 +21,6 @@ import mmcv
 from ..base_dataset import BaseDataset
 from ..video_dataset import *
 from ..registry import DATASETS
-from ..pipelines.my_aug import ClipRandomSizedCrop, ClipMotionStatistic, ClipRandomHorizontalFlip
 
 from ..pipelines import Compose
 from mmpt.utils import *

@@ -1,9 +1,8 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+import _init_paths
 import argparse
 import os
-from pickle import FALSE
 
-import _init_paths
 import mmcv
 import torch
 from mmcv.parallel import MMDataParallel
@@ -17,8 +16,9 @@ from mmpt.models import build_model
 
 def parse_args():
     parser = argparse.ArgumentParser(description='mmediting tester')
-    parser.add_argument('--config', help='test config file path', default='/home/lr/project/mmpt/configs/train/local/lfm/temp_res18_d4_l2_rec_lfm_c2f.py')
+    parser.add_argument('--config', help='test config file path', default='/home/lr/project/mmpt_ops/configs/test/res18_d8.py')
     parser.add_argument('--checkpoint', type=str, help='checkpoint file', default='')
+    parser.add_argument('--out-indices', nargs='+', type=int, default=[0])
     parser.add_argument('--seed', type=int, default=None, help='random seed')
     parser.add_argument(
         '--deterministic',
@@ -28,7 +28,7 @@ def parse_args():
     parser.add_argument(
         '--eval',
         type=str,
-        default='J&F-Mean',
+        default='davis',
         nargs='+',
         help='evaluation metrics, which depends on the dataset, e.g.,'
         ' "top_k_accuracy", "mean_class_accuracy" for video dataset')
@@ -42,6 +42,10 @@ def parse_args():
         default=None,
         type=str,
         help='path to store images and if not given, will not save image')
+    parser.add_argument(
+        '--task',
+        default='davis',
+        help='which task')
     parser.add_argument('--tmpdir', help='tmp dir for writing some results')
     parser.add_argument(
         '--launcher',
@@ -73,25 +77,30 @@ def main():
     if cfg.get('cudnn_benchmark', False):
         torch.backends.cudnn.benchmark = True
 
+    cfg.model.pretrained = None
+
     # Load eval_config from cfg
     eval_config = cfg.get('eval_config', {})
 
     if eval_config.get('dry_run', False):
         return 0
+
+    # Overwrite eval_config from args.eval
+    # eval_config = merge_configs(eval_config, dict(metrics=args.eval))
     
     if 'output_dir' in eval_config and not args.out:
         args.tmpdir = eval_config['output_dir']
+        eval_config['output_dir'] = eval_config['output_dir'] + args.task
     else:
         args.tmpdir = args.out
+        eval_config['output_dir'] = args.out  + args.task
 
     if 'checkpoint_path' in eval_config and not args.checkpoint:
         args.checkpoint = eval_config['checkpoint_path']
         eval_config.pop('checkpoint_path')
     else:
         eval_config.pop('checkpoint_path')
-    
-    if 'torchvision_pretrained' in eval_config: # bug
-        eval_config.pop('torchvision_pretrained')
+        
 
     # init distributed env first, since logger depends on the dist info.
     if args.launcher == 'none':
@@ -100,7 +109,6 @@ def main():
         distributed = True
         init_dist(args.launcher, **cfg.dist_params)
 
-    args.save_path = osp.join(cfg.work_dir, 'test_results')
 
     # set random seeds
     if args.seed is not None:
@@ -110,7 +118,8 @@ def main():
 
     # build the dataloader
     # TODO: support multiple images per gpu (only minor changes are needed)
-    dataset = build_dataset(cfg.data.test)
+    data = cfg.data.get(f'test_{args.task}')
+    dataset = build_dataset(data)
 
     loader_cfg = {
         **dict((k, cfg.data[k]) for k in ['workers_per_gpu'] if k in cfg.data),
@@ -123,9 +132,24 @@ def main():
     }
 
     data_loader = build_dataloader(dataset, **loader_cfg)
+    cfg.test_cfg = cfg.get(f'test_cfg_{args.task}')
+
 
     # build the model and load checkpoint
-    model = build_model(cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
+    eval_arc = cfg.get('eval_arc', 'VanillaTracker')
+    model = mmcv.ConfigDict(type=eval_arc, backbone=cfg.model.backbone)
+    model.backbone.out_indices = cfg.test_cfg.out_indices
+    model.backbone.strides = cfg.test_cfg.strides
+    
+    if cfg.test_cfg.get('dilations', False):
+        model.backbone.dilations = cfg.test_cfg.dilations
+    
+    if 'torchvision_pretrained' in eval_config:
+        model.backbone.pretrained = eval_config['torchvision_pretrained']
+        eval_config.pop('torchvision_pretrained')
+
+
+    model = build_model(model, train_cfg=None, test_cfg=cfg.test_cfg)
     model.init_weights()
 
     args.save_image = args.save_path is not None
@@ -140,13 +164,6 @@ def main():
             save_path=args.save_path,
             save_image=args.save_image)
     else:
-        if args.checkpoint:
-            
-            _ = load_checkpoint(
-                model,
-                args.checkpoint,
-                map_location='cpu')
-            
         find_unused_parameters = cfg.get('find_unused_parameters', False)
         model = DistributedDataParallelWrapper(
             model,
@@ -155,6 +172,13 @@ def main():
             find_unused_parameters=find_unused_parameters)
 
         device_id = torch.cuda.current_device()
+
+        if args.checkpoint:
+
+            _ = load_checkpoint(
+                model,
+                args.checkpoint,
+                map_location='cpu')
 
         outputs = multi_gpu_test(
             model,

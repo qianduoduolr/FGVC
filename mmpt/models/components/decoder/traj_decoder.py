@@ -119,10 +119,10 @@ class TRAJ_PyramidDecoder(BaseModule):
         act_cfg: Optional[dict] = None,
     ):
         super().__init__()
+        
         self.corr_block_config = corr_block_config
         self.corr_block = CorrelationPyramid(**corr_block_config)
 
-        # self.num_levels = num_levels
         self.radius = radius
 
         self.iters = iters
@@ -491,7 +491,7 @@ class TRAJ_PyramidDecoderV3(TRAJ_PyramidDecoder):
             times_ = torch.linspace(0, T, T).cuda().reshape(1, T, 1, 1).repeat(B, 1, P, 1)
             
             t_ = torch.cat([coords_, times_], dim=-1).transpose(1,2).flatten(0,1)
-            time_emb = get_3d_embedding(t_, self.time_dim, cat_coords=True).reshape(B,P,T,-1).transpose(1,2)
+            time_emb = get_3d_embedding(t_, self.time_dim, cat_coords=False).reshape(B,P,T,-1).transpose(1,2)
             
             if self.context_layer is not None:
                 feat_input = self.context_layer(torch.cat([query_feat, query_feat_pre], -1))
@@ -520,6 +520,8 @@ class TRAJ_PyramidDecoderV3(TRAJ_PyramidDecoder):
         
                 if _ == self.iters - 1:
                     vis_results['vis_corrs'] = tensor2img(corr_pyramid_pre[0].reshape(B, T, P, 1, H//2, W//2)[0, :, point_id], norm_mode='0-1')
+                    
+                    # vis_results['vis_corrs'] = tensor2img(corr_pyramid[0].reshape(B, T, P, 1, H, W)[0, :, point_id], norm_mode='0-1')
 
         if not vis:
             return preds, query_feat_init, query_feat, None

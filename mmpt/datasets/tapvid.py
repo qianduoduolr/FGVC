@@ -41,7 +41,14 @@ class TAPVidDataset(Video_dataset_base):
     The elements consist of videos of arbitrary length.
     """
 
-    def __init__(self, tapvid_subset_name, query_mode, size=(24, 256, 256, 3), input_size=(256, 256), vis_traj=False, *args, **kwargs):
+    def __init__(self, 
+                 tapvid_subset_name, 
+                 query_mode, 
+                 size=(24, 256, 256, 3), 
+                 input_size=(256, 256), 
+                 vis_traj=False, 
+                 spe_name=None,
+                 *args, **kwargs):
         super().__init__( *args, **kwargs)
 
         self.tapvid_subset_name = tapvid_subset_name
@@ -49,13 +56,24 @@ class TAPVidDataset(Video_dataset_base):
         self.size = size
         self.input_size = input_size
         self.vis_traj = vis_traj
+        self.spe_name = spe_name
+        
         self.load_annotations()
           
     def load_annotations(self):
         
         logger = get_root_logger()
         
-        self.samples = glob(osp.join(self.root, '*.pkl'))
+        samples = glob(osp.join(self.root, '*.pkl'))
+        
+        if self.spe_name is not None:
+            for sample in samples:
+                if sample.find(self.spe_name) != -1:
+                    self.samples = [sample]
+        
+        else:
+            self.samples = samples
+            
             
         # self.samples = self.samples[4:8]
                             
