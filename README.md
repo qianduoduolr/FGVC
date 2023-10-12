@@ -221,4 +221,4 @@ bash tools/dist_train.sh configs/train/train.py 4
 This work is licensed under MIT license. See the [LICENSE](LICENSE) for details.
 
 ## Acknowledgement
-The codebase is implemented based on the [MMCV](https://github.com/open-mmlab/mmcv), [tapnet](https://github.com/google-deepmind/tapnet), and [VFS](https://github.com/xvjiarui/VFS). Thanks for these excellent open source repositories.
+The codebase is implemented based on the [MMCV](https://github.com/open-mmlab/mmcv), [tapnet](https://github.com/google-deepmind/tapnet), [pips](https://particle-video-revisited.github.io/), and [VFS](https://github.com/xvjiarui/VFS). Thanks for these excellent open source repositories.
