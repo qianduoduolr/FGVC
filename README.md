@@ -210,11 +210,11 @@ bash tools/dist_test.sh configs/eval/res18_d1_eval.py 4 davis ckpt/res18_d1_fly_
 ```
 The results will be saved to `eval/`. Please note we do inference on 4 A100 GPUs, which has 80G memory. Here we give the inference code to support other GPUs with smaller memory size, which may cost more time for inference, we plan to give a more efficient version of the inference code with label propagation later. If you have enough memory, you can simply increase the `step` of `test_cfg` in `CONFIG` for faster inference in current version. 
 
-## Tranining (to be updated)
-We perform training on FlyingThings and YouTube-VOS:
+## Tranining
+We perform training on FlyingThings and YouTube-VOS. Before training you need to download the pre-trained 2D encoder from [this link](), and modify the `pretrained` in `model.teacher` in the config. You can also try more stronger model pre-trained on large-scale image dataset, i.e., [MoCo](), [DetCo](), which may get better results.
 
 ```shell
-bash tools/dist_train.sh configs/train/train.py 4
+bash tools/dist_train.sh configs/train/mixed_train_res18_d1_l2_rec_ytv_fly.py 4
 ```
 
 ## License
