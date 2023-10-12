@@ -193,7 +193,10 @@ The overall data structure is as followed:
 
 
 ## Evaluation
-The evaluation is particularly conducted on pixel-wise correspondence-related tasks, i.e., point tracking, on TAP-Vid dataset, JHMDB, and BADJA.
+<div  align="center">    
+<img src="figure/results.png"  height="270px"/> 
+</div>
+The evaluation is particularly conducted on pixel-wise correspondence-related tasks, i.e., point tracking, on TAP-Vid dataset, JHMDB, and BADJA. The results are shown above.
 
 We follow the prior studies to leverage label propagation for inference, which can be achieved by:
 ```shell
