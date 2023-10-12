@@ -200,7 +200,7 @@ We follow the prior studies to leverage label propagation for inference, which c
 bash tools/dist_test.sh ${CONFIG}  ${GPUS} ${TASK} ${CKPT}
 ```
 
-Note you need download the pre-trained models with [this link](https://drive.google.com/file/d/1ZJHyWMOpWhfmX6vMX5Qkm_2qkqS0grNM/view?usp=drive_link) for the `CKPT`. Note the TASK consists of `'davis'` (for TAP-Vid-DAVIS), `'kinetics'` (for TAP-Vid-Kinetics), `'jhmdb'` (for human keypoint tracking), and `'badja'` (for animal keypoint tracking).
+Note you need download the pre-trained models with [this link](https://drive.google.com/file/d/1CMEdJTo9MHtS8INvgSamGRBCObM0UGIs/view?usp=drive_link) for the `CKPT`. Note the TASK consists of `'davis'` (for TAP-Vid-DAVIS), `'kinetics'` (for TAP-Vid-Kinetics), `'jhmdb'` (for human keypoint tracking), and `'badja'` (for animal keypoint tracking).
 
 We give a inference cmd example:
 
@@ -211,7 +211,7 @@ bash tools/dist_test.sh configs/eval/res18_d1_eval.py 4 davis ckpt/res18_d1_fly_
 The results will be saved to `eval/`. Please note we do inference on 4 A100 GPUs, which has 80G memory. Here we give the inference code to support other GPUs with smaller memory size, which may cost more time for inference, we plan to give a more efficient version of the inference code with label propagation later. If you have enough memory, you can simply increase the `step` of `test_cfg` in `CONFIG` for faster inference in current version. 
 
 ## Tranining
-We perform training on FlyingThings and YouTube-VOS. Before training you need to download the pre-trained 2D encoder from [this link](), and modify the `pretrained` in `model.teacher` in the config. You can also try more stronger model pre-trained on large-scale image dataset, i.e., [MoCo](), [DetCo](), which may get better results.
+We perform training on FlyingThings and YouTube-VOS. Before training you need to download the pre-trained 2D encoder from [this link](https://drive.google.com/file/d/1uSt3FvS2iY_x5_4tuITzCkCX5CYOpSOA/view?usp=drive_link), and modify the `pretrained` in `model.teacher` in the config. You can also try more stronger model pre-trained on large-scale image dataset, i.e., [MoCo](https://github.com/facebookresearch/moco), [DetCo](https://github.com/xieenze/DetCo), which may get better results.
 
 ```shell
 bash tools/dist_train.sh configs/train/mixed_train_res18_d1_l2_rec_ytv_fly.py 4
