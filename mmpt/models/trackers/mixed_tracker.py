@@ -10,7 +10,6 @@ from turtle import forward
 import mmcv
 import torch.nn as nn
 import torch.nn.functional as F
-from dall_e import load_model, map_pixels, unmap_pixels
 from mmcv.ops import Correlation
 from mmcv.runner import CheckpointLoader, auto_fp16, load_checkpoint
 from torch import bilinear, unsqueeze

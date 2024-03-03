@@ -83,6 +83,5 @@ data = dict(
             test_mode=True,
             sigma=3,
             pipeline=test_pipeline_badja,
-            test_mode=True
             )
 )
